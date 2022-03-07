@@ -40,18 +40,4 @@ void square_dgemm (int n, double* A, double* B, double* C)
           }
       }
   }
-
-
-  // /* For each row i of A */
-  // for (int i = 0; i < n / s; ++i)
-  //   /* For each column j of B */
-
-  //   for (int j = 0; j < n / s; ++j) 
-  //   {
-  //     /* Compute C(i,j) */
-  //     double cij = C[i+j*n];
-  //     for( int k = 0; k < n/s; k++ )
-	// cij += A[i+k*n] * B[k+j*n];
-  //     C[i+j*n] = cij;
-  //   }
 }
