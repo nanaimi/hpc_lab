@@ -23,7 +23,7 @@ void square_dgemm (int n, double* A, double* B, double* C)
 {
   // TODO: Implement the blocking optimization
 
-  int s = (n < 12) ? n : 12;
+  int s = (n < 13) ? n : 13;
   int numBlocks = (n % s == 0) ? (n / s) : (n / s + 1);
   for (int K = 0; K < numBlocks; ++K) {
       for (int J = 0; J < numBlocks; ++J) {
