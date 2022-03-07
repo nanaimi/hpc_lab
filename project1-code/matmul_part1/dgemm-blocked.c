@@ -23,15 +23,36 @@ void square_dgemm (int n, double* A, double* B, double* C)
 {
   // TODO: Implement the blocking optimization
 
-  /* For each row i of A */
-  for (int i = 0; i < n; ++i)
-    /* For each column j of B */
-    for (int j = 0; j < n; ++j) 
-    {
-      /* Compute C(i,j) */
-      double cij = C[i+j*n];
-      for( int k = 0; k < n; k++ )
-	cij += A[i+k*n] * B[k+j*n];
-      C[i+j*n] = cij;
-    }
+  int s = (n < 12) ? n : 12;
+  int numBlocks = (n % s == 0) ? (n / s) : (n / s + 1);
+  for (int K = 0; K < numBlocks; ++K) {
+      #pragma omp parallel for
+      for (int J = 0; J < numBlocks; ++J) {
+          for (int i = 0; i < n; ++i) {
+              int kmax = (K*s + s) > n ? n : (K*s + s);
+              int jmax = (J*s + s) > n ? n : (J*s + s);
+              for (int j = J*s; j < jmax; ++j) {
+                  double cij = C[i + j * n];
+                  for (int k = K*s; k < kmax; k++) {
+                      cij += A[i + k * n] * B[k + j * n];
+                  }
+                  C[i + j * n] = cij;
+              }
+          }
+      }
+  }
+
+
+  // /* For each row i of A */
+  // for (int i = 0; i < n / s; ++i)
+  //   /* For each column j of B */
+
+  //   for (int j = 0; j < n / s; ++j) 
+  //   {
+  //     /* Compute C(i,j) */
+  //     double cij = C[i+j*n];
+  //     for( int k = 0; k < n/s; k++ )
+	// cij += A[i+k*n] * B[k+j*n];
+  //     C[i+j*n] = cij;
+  //   }
 }
