@@ -26,7 +26,6 @@ void square_dgemm (int n, double* A, double* B, double* C)
   int s = (n < 12) ? n : 12;
   int numBlocks = (n % s == 0) ? (n / s) : (n / s + 1);
   for (int K = 0; K < numBlocks; ++K) {
-      #pragma omp parallel for
       for (int J = 0; J < numBlocks; ++J) {
           for (int i = 0; i < n; ++i) {
               int kmax = (K*s + s) > n ? n : (K*s + s);
