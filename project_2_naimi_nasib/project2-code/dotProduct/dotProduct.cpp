@@ -56,7 +56,7 @@ int main() {
   time_red = wall_time();
   //   TODO: Write parallel version (2 ways!)
   //   i.  Using reduction pragma
-  #pragma omp parallel for default(shared) schedule(static,chunk) reduction(+:result)
+  #pragma omp parallel for default(shared) schedule(static,chunk) reduction(+:alpha_parallel)
   for (int iterations = 0; iterations < NUM_ITERATIONS; iterations++) {
     alpha_parallel = 0.0;
     for (int i = 0; i < N; i++) {
