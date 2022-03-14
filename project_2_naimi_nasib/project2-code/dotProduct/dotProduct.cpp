@@ -11,7 +11,7 @@
 // 0.008s ~0.8MB
 // #define N 100000
 // 0.1s ~8MB
-#define N 1000000
+// #define N 1000000
 // 1.1s ~80MB
 // #define N 10000000
 // 13s ~800MB
@@ -22,7 +22,10 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char** argv) {
+
+  int N = (int)argv[i];
+
   double time_serial, time_start = 0.0;
   double *a, *b;
 
