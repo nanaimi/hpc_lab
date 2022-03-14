@@ -24,7 +24,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
-  int N = (int)argv[0];
+  int N = atoi(argv[0]);
 
   double time_serial, time_start = 0.0;
   double *a, *b;
