@@ -53,6 +53,7 @@ int main() {
   double time_red = 0;
   double time_critical = 0;
 
+  time_red = wall_time();
   //   TODO: Write parallel version (2 ways!)
   //   i.  Using reduction pragma
   #pragma omp parallel for default(shared) schedule(static,chunk) reduction(+:result)
@@ -65,7 +66,7 @@ int main() {
   time_red = wall_time() - time_red;
 
   alpha_parallel = 0;
-  time_critical = wall_time()
+  time_critical = wall_time();
   //   ii. Using  critical pragma
   for (int iterations = 0; iterations < NUM_ITERATIONS; iterations++) {
     #pragma omp parallel shared(alpha_parallel)  
