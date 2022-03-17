@@ -62,9 +62,9 @@ int main(int argc, char** argv) {
   time_red = wall_time();
   //   TODO: Write parallel version (2 ways!)
   //   i.  Using reduction pragma
-  #pragma omp parallel for default(shared) reduction(+:alpha_parallel)
   for (int iterations = 0; iterations < NUM_ITERATIONS; iterations++) {
     alpha_parallel = 0.0;
+    #pragma omp parallel for default(shared) reduction(+:alpha_parallel)
     for (int i = 0; i < N; i++) {
       alpha_parallel += a[i] * b[i];
     }
@@ -92,13 +92,24 @@ int main(int argc, char** argv) {
 
   //   ii. Using  critical pragma
   for (int iterations = 0; iterations < NUM_ITERATIONS; iterations++) {
-    #pragma omp parallel for shared(alpha_parallel)  
     alpha_parallel = 0.0;
-    for (int i = 0; i < N; i++) {
+    double local_sum;
+    #pragma omp parallel private(local_sum) 
+    {
+      local_sum = 0;
+      #pragma omp for 
+      {
+        for( i=0; i<N; i ++) {
+          local_sum = a[i] * b[i] + local_sum;
+        }
+      }
       #pragma omp critical
-      alpha_parallel += a[i] * b[i];
+      {
+        alpha_parallel += local_sum;
+      }
     }
   }  
+  
   time_critical = wall_time() - time_critical;
 
 
