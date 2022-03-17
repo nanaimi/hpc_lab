@@ -1,9 +1,10 @@
-// #include <omp.h>
+#include <omp.h>
 #include "walltime.h"
 #include <iostream>
 #include <math.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <fstream>
 
 #define NUM_ITERATIONS 100
 
@@ -23,6 +24,9 @@
 using namespace std;
 
 int main(int argc, char** argv) {
+
+  ofstream datafile;
+  datafile.open ("timedata.csv");
 
   int N = atoi(argv[0]);
 
@@ -92,6 +96,10 @@ int main(int argc, char** argv) {
        << " time using reduction method = " << time_red
        << " sec, time using critical method " << time_critical << " sec"
        << endl;
+
+
+  myfile << time_serial << "," << time_red << "," << time_critical << ",\n";
+  myfile.close();
 
   // De-allocate memory
   delete[] a;
