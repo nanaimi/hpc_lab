@@ -94,12 +94,13 @@ int main(int argc, char** argv) {
   for (int iterations = 0; iterations < NUM_ITERATIONS; iterations++) {
     alpha_parallel = 0.0;
     double local_sum;
+    int i, tid;
     #pragma omp parallel private(local_sum) 
     {
       local_sum = 0;
       #pragma omp for 
       {
-        for( i=0; i<N; i ++) {
+        for(i=0; i<N; i ++) {
           local_sum = a[i] * b[i] + local_sum;
         }
       }
