@@ -107,7 +107,8 @@ int main(int argc, char** argv) {
        << " sec, time using critical method " << time_critical << " sec"
        << endl;
 
-  datafile.open ("timedata.csv");
+  string file_name = "t_" + str(omp_get_max_threads()) + "_N_" + str(N) + "timedata.csv";
+  datafile.open (file_name);
   datafile << time_serial << "," << time_red << "," << time_critical << ",\n";
   datafile.close();
 
