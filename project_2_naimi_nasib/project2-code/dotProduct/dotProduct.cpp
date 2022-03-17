@@ -98,8 +98,8 @@ int main(int argc, char** argv) {
        << endl;
 
 
-  myfile << time_serial << "," << time_red << "," << time_critical << ",\n";
-  myfile.close();
+  datafile << time_serial << "," << time_red << "," << time_critical << ",\n";
+  datafile.close();
 
   // De-allocate memory
   delete[] a;
