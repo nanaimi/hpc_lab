@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
   ofstream datafile;
   datafile.open ("timedata.csv");
 
-  int N = atoi(argv[0]);
+  int N = atoi(argv[1]);
 
   double time_serial, time_start = 0.0;
   double *a, *b;
