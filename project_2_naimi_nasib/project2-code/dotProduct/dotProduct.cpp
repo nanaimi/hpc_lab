@@ -26,8 +26,7 @@ using namespace std;
 int main(int argc, char** argv) {
 
   ofstream datafile;
-  datafile.open ("timedata.csv");
-
+  
   int N = atoi(argv[1]);
 
   double time_serial, time_start = 0.0;
@@ -97,7 +96,7 @@ int main(int argc, char** argv) {
        << " sec, time using critical method " << time_critical << " sec"
        << endl;
 
-
+  datafile.open ("timedata.csv");
   datafile << time_serial << "," << time_red << "," << time_critical << ",\n";
   datafile.close();
 
