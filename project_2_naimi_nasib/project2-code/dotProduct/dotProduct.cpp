@@ -26,7 +26,7 @@ using namespace std;
 int main(int argc, char** argv) {
 
   ofstream datafile;
-  
+
   int N = atoi(argv[1]);
 
   double time_serial, time_start = 0.0;
@@ -73,9 +73,26 @@ int main(int argc, char** argv) {
 
   alpha_parallel = 0;
   time_critical = wall_time();
+
+// #pragma omp parallel private(local_sum) 
+//             {
+//                 local_sum = 0;
+//                 #pragma omp for
+//                 {
+//                 for( i=0; i<N; i ++) {
+//                     local_sum = a[i] * b[i] + local_sum;
+//                 }
+//                 }
+//                 #pragma omp critical 
+//                 {
+//                 alpha_parallel += local_sum;
+//                 }
+//             }
+//             }
+
   //   ii. Using  critical pragma
   for (int iterations = 0; iterations < NUM_ITERATIONS; iterations++) {
-    #pragma omp parallel shared(alpha_parallel)  
+    #pragma omp parallel for shared(alpha_parallel)  
     alpha_parallel = 0.0;
     for (int i = 0; i < N; i++) {
       #pragma omp critical
