@@ -1,15 +1,16 @@
+#include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #include <sys/time.h>
 #include <time.h>
 #include <unistd.h>
+#include <fstream>
+#include <sstream>
 
 #include "consts.h"
 #include "pngwriter.h"
 
-#include <fstream>
-#include <sstream>
 
 unsigned long get_time() {
   struct timeval tp;
