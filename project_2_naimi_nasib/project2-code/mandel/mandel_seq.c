@@ -44,14 +44,12 @@ int main(int argc, char **argv) {
       // TODO
       // >>>>>>>> CODE IS MISSING
       n = 0;
-      zabs = x2 + y2;
-      while ((zabs < 4) && (n < MAX_ITERS)) {
+      while ((x2 + y2 < 4) && (n < MAX_ITERS)) {
+             y = 2 * x * y + cy;
              x = x2 - y2 + cx;
-             y = 2*x*y + cy;
              x2 = x * x;
              y2 = y * y;
-             zabs = x2 + y2;
-             n+=1;
+             n = n + 1;
       }
       nTotalIterationsCount += n;
       // <<<<<<<< CODE IS MISSING
