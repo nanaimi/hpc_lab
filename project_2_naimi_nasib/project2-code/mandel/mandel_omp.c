@@ -6,14 +6,13 @@
 #include <time.h>
 #include <unistd.h>
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
+
+#include <fstream.h>
+#include <sstream.h>
 
 #include "consts.h"
 #include "pngwriter.h"
 
-using namespace std;
 
 unsigned long get_time() {
   struct timeval tp;
