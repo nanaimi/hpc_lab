@@ -6,10 +6,6 @@
 #include <time.h>
 #include <unistd.h>
 
-
-#include <fstream.h>
-#include <sstream.h>
-
 #include "consts.h"
 #include "pngwriter.h"
 
@@ -21,7 +17,8 @@ unsigned long get_time() {
 }
 
 int main(int argc, char **argv) {
-  ofstream datafile;
+
+//   FILE *datafile;
 
   png_data *pPng = png_create(IMAGE_WIDTH, IMAGE_HEIGHT);
 
@@ -78,6 +75,8 @@ int main(int argc, char **argv) {
   unsigned long nTimeEnd = get_time();
 
   // print benchmark data
+  printf("Threads:                 %g\n",
+         omp_get_max_threads();
   printf("Total time:                 %g millisconds\n",
          (nTimeEnd - nTimeStart) / 1000.0);
   printf("Image size:                 %ld x %ld = %ld Pixels\n",
@@ -94,17 +93,19 @@ int main(int argc, char **argv) {
   printf("MFlop/s:                    %g\n",
          nTotalIterationsCount * 8.0 / (double)(nTimeEnd - nTimeStart));
 
-  stringstream ss;
-  ss << "t_" << omp_get_max_threads() << "_W_" << IMAGE_WIDTH << "_mandel.csv";
-  string file_name = ss.str();
-  datafile.open(file_name.c_str());
-  datafile << IMAGE_WIDTH 
-           << "," << nTotalIterationsCount 
-           << "," << (nTimeEnd - nTimeStart) / (double)(IMAGE_WIDTH * IMAGE_HEIGHT)) 
-           << "," << (nTimeEnd - nTimeStart) / (double)nTotalIterationsCount)
-           << "," << nTotalIterationsCount / (double)(nTimeEnd - nTimeStart) * 1e6)
-           << "," << nTotalIterationsCount * 8.0 / (double)(nTimeEnd - nTimeStart)) << ",\n";
-  datafile.close();
+//   char file_name = "t_";
+//   strcat(file_name, )
+//    omp_get_max_threads() << "_W_" << IMAGE_WIDTH << "_mandel.csv";
+//   char file_name = ss.str();
+//   datafile = fopen(file_name.c_str(),"w");
+
+//   datafile << IMAGE_WIDTH 
+//            << "," << nTotalIterationsCount 
+//            << "," << (nTimeEnd - nTimeStart) / (double)(IMAGE_WIDTH * IMAGE_HEIGHT)) 
+//            << "," << (nTimeEnd - nTimeStart) / (double)nTotalIterationsCount)
+//            << "," << nTotalIterationsCount / (double)(nTimeEnd - nTimeStart) * 1e6)
+//            << "," << nTotalIterationsCount * 8.0 / (double)(nTimeEnd - nTimeStart)) << ",\n";
+//   fclose(datafile);
 
   png_write(pPng, "mandel_omp.png");
   return 0;
