@@ -8,6 +8,9 @@
 #include "consts.h"
 #include "pngwriter.h"
 
+#include <fstream>
+#include <sstream>
+
 unsigned long get_time() {
   struct timeval tp;
   gettimeofday(&tp, NULL);
@@ -15,6 +18,8 @@ unsigned long get_time() {
 }
 
 int main(int argc, char **argv) {
+  ofstream datafile;
+
   png_data *pPng = png_create(IMAGE_WIDTH, IMAGE_HEIGHT);
 
   double x, y, x2, y2, cx, cy;
@@ -85,6 +90,18 @@ int main(int argc, char **argv) {
   // assume there are 8 floating point operations per iteration
   printf("MFlop/s:                    %g\n",
          nTotalIterationsCount * 8.0 / (double)(nTimeEnd - nTimeStart));
+
+  stringstream ss;
+  ss << "t_" << omp_get_max_threads() << "_W_" << IMAGE_WIDTH << "_mandel.csv";
+  string file_name = ss.str();
+  datafile.open(file_name.c_str());
+  datafile << IMAGE_WIDTH 
+           << "," << nTotalIterationsCount 
+           << "," << (nTimeEnd - nTimeStart) / (double)(IMAGE_WIDTH * IMAGE_HEIGHT)) 
+           << "," << (nTimeEnd - nTimeStart) / (double)nTotalIterationsCount)
+           << "," << nTotalIterationsCount / (double)(nTimeEnd - nTimeStart) * 1e6)
+           << "," << nTotalIterationsCount * 8.0 / (double)(nTimeEnd - nTimeStart)) << ",\n";
+  datafile.close();
 
   png_write(pPng, "mandel_omp.png");
   return 0;
