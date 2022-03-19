@@ -36,11 +36,11 @@ int main(int argc, char **argv) {
   {
        #pragma omp for collapse(2)
        for (j = 0; j < IMAGE_HEIGHT; j++) {
-              cy = MIN_Y + j * fDeltaY;
-              y = cy;
-              y2 = y * y;
               for (i = 0; i < IMAGE_WIDTH; i++) {   
                      cx = MIN_X + i * fDeltaX;
+              	     cy = MIN_Y + j * fDeltaY;
+                     y = cy;
+                     y2 = y * y;
                      x = cx;
                      x2 = x * x;
                      // compute the orbit z, f(z), f^2(z), f^3(z), ...
