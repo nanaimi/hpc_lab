@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
 
   // print benchmark data
   printf("Threads:                 %g\n",
-         omp_get_max_threads();
+         omp_get_max_threads());
   printf("Total time:                 %g millisconds\n",
          (nTimeEnd - nTimeStart) / 1000.0);
   printf("Image size:                 %ld x %ld = %ld Pixels\n",
