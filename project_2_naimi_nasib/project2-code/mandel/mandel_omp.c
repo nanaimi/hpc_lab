@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
   unsigned long nTimeEnd = get_time();
 
   // print benchmark data
-  printf("Threads:                 %g\n",
+  printf("Threads:                 %i\n",
          omp_get_max_threads());
   printf("Total time:                 %g millisconds\n",
          (nTimeEnd - nTimeStart) / 1000.0);
