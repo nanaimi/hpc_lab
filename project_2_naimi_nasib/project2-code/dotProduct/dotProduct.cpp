@@ -79,7 +79,7 @@ int main(int argc, char** argv) {
     alpha_parallel = 0.0;
     double local_sum;
     int i, tid;
-    #pragma omp parallel private(local_sum)
+    #pragma omp parallel private(local_sum) shared(alpha_parallel)
     {
       local_sum = 0;
       #pragma omp for
