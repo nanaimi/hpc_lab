@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <fstream>
+#include <sstream>
 
 #define NUM_ITERATIONS 100
 
@@ -107,7 +108,10 @@ int main(int argc, char** argv) {
        << " sec, time using critical method " << time_critical << " sec"
        << endl;
 
-  datafile.open ("timedata.csv");
+  stringstream ss;
+  ss << "t_" << omp_get_max_threads() << "_N_" << N << "_timedata.csv";
+  string file_name = ss.str();
+  datafile.open(file_name.c_str());
   datafile << time_serial << "," << time_red << "," << time_critical << ",\n";
   datafile.close();
 
