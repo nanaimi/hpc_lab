@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
   float total;
 
 /*** Spawn parallel region ***/
-#pragma omp parallel
+#pragma omp parallel private(tid) // added tid to private thread variables (fix printing)
   {
     /* Obtain thread number */
     tid = omp_get_thread_num();
@@ -26,9 +26,9 @@ int main(int argc, char *argv[]) {
 
     /* do some work */
     total = 0.0;
-#pragma omp for schedule(dynamic, 10)
+#pragma omp for reduction(+:total) // schedule(dynamic, 10) //  fix by using reduction instead of schedule
     for (i = 0; i < 1000000; i++)
-      total = total + i * 1.0;
+      total = total + i * 1.0; // total is shared variable
 
     printf("Thread %d is done! Total= %e\n", tid, total);
 

@@ -23,8 +23,8 @@ int main(int argc, char *argv[]) {
 #pragma omp parallel for shared(a, b, c, chunk) private(i, tid)                \
     schedule(static, chunk)
   {
-    tid = omp_get_thread_num();
     for (i = 0; i < N; i++) {
+      tid = omp_get_thread_num(); // Move this into for loop (parallel for directive needs to be followed by for loop)
       c[i] = a[i] + b[i];
       printf("tid= %d i= %d c[i]= %f\n", tid, i, c[i]);
     }
