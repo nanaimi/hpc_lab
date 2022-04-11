@@ -38,9 +38,9 @@ void diffusion(const data::Field &s, data::Field &f)
     int chunk_size = 10;
 
     // the interior grid points
-    // #pragma omp parallel shared(f, s, y_old, bndE, bndW, bndN, bndS) firstprivate(alpha, beta, nx, iend, jend)
+    #pragma omp parallel shared(f, s, y_old, bndE, bndW, bndN, bndS) firstprivate(alpha, beta, nx, iend, jend)
     {
-    // #pragma omp for schedule(static, chunk_size) nowait
+    #pragma omp for schedule(static, chunk_size) nowait
     for (int j=1; j < jend; j++) {
         for (int i=1; i < iend; i++) {
             //TODO
@@ -56,7 +56,7 @@ void diffusion(const data::Field &s, data::Field &f)
     // the east boundary
     {
         int i = nx - 1;
-        // #pragma omp for schedule(static, chunk_size) nowait
+        #pragma omp for schedule(static, chunk_size) nowait
         for (int j = 1; j < jend; j++)
         {
             f(i,j) = -(4. + alpha) * s(i,j)
@@ -71,7 +71,7 @@ void diffusion(const data::Field &s, data::Field &f)
     {
         int i = 0;
         //TODO
-        // #pragma omp for schedule(static, chunk_size) nowait
+        #pragma omp for schedule(static, chunk_size) nowait
         for (int j = 1; j < jend; j++)
         {
             f(i,j) = -(4. + alpha) * s(i,j)
@@ -86,7 +86,7 @@ void diffusion(const data::Field &s, data::Field &f)
     {
         int j = nx - 1;
 
-        // #pragma omp single nowait
+        #pragma omp single nowait
         {
             int i = 0; // NW corner
             f(i,j) = -(4. + alpha) * s(i,j)
@@ -98,7 +98,7 @@ void diffusion(const data::Field &s, data::Field &f)
 
         // inner north boundary
         //TODO
-        // #pragma omp for schedule(static, chunk_size) nowait
+        #pragma omp for schedule(static, chunk_size) nowait
         for (int i = 1; i < iend; i++)
         {
             f(i,j) = -(4. + alpha) * s(i,j)
@@ -108,7 +108,7 @@ void diffusion(const data::Field &s, data::Field &f)
                         + alpha * y_old(i,j);
         }
 
-        // #pragma omp single nowait
+        #pragma omp single nowait
         {
             int i = nx-1; // NE corner
             f(i,j) = -(4. + alpha) * s(i,j)
@@ -122,7 +122,7 @@ void diffusion(const data::Field &s, data::Field &f)
     // the south boundary
     {
         int j = 0;
-        // #pragma omp single nowait
+        #pragma omp single nowait
         {
             int i = 0; // SW corner
             f(i,j) = -(4. + alpha) * s(i,j)
@@ -133,7 +133,7 @@ void diffusion(const data::Field &s, data::Field &f)
 
         // inner south boundary
         //TODO
-        // #pragma omp for schedule(static, chunk_size) nowait
+        #pragma omp for schedule(static, chunk_size) nowait
         for (int i = 1; i < iend; i++)
         {
             f(i,j) = -(4. + alpha) * s(i,j)
@@ -143,7 +143,7 @@ void diffusion(const data::Field &s, data::Field &f)
                         + alpha * y_old(i,j);
         }
 
-        // #pragma omp single nowait
+        #pragma omp single nowait
         {
             int i = nx - 1; // SE corner
             f(i,j) = -(4. + alpha) * s(i,j)
