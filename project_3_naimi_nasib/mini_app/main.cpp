@@ -18,6 +18,8 @@
 
 #include <omp.h>
 #include <stdio.h>
+#include <fstream>
+#include <sstream>
 
 #include "data.h"
 #include "linalg.h"
@@ -106,6 +108,9 @@ int main(int argc, char* argv[])
     int max_cg_iters     = 200;
     int max_newton_iters = 50;
     double tolerance     = 1.e-6;
+
+    // define datafile 
+    std::ofstream datafile;
 
     std::cout << "========================================================================" << std::endl;
     std::cout << "                      Welcome to mini-stencil!" << std::endl;
@@ -244,6 +249,18 @@ int main(int argc, char* argv[])
     std::cout << iters_newton << " newton iterations" << std::endl;
     std::cout << "--------------------------------------------------------------------------------"
               << std::endl;
+
+    std::stringstream ss;
+    ss << "t_" << omp_get_max_threads() << "_size_" << options.nx << "_data.csv";
+    std::string file_name = ss.str();
+    datafile.open(file_name.c_str());
+    datafile << omp_get_max_threads() << ","
+             << options.nx << ","
+             << timespent << "," 
+             << int(iters_cg) << "," 
+             << float(iters_cg)/timespent << "," 
+             << iters_newton << ",\n";
+    datafile.close();
 
     std::cout << "Goodbye!" << std::endl;
 

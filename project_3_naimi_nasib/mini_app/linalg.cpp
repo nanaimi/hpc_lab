@@ -5,6 +5,7 @@
 
 #include <cmath>
 #include <cstdio>
+#include <omp.h>
 
 #include "linalg.h"
 #include "operators.h"
