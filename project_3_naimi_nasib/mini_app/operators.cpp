@@ -35,7 +35,7 @@ void diffusion(const data::Field &s, data::Field &f)
     int nx = options.nx;
     int iend  = nx - 1;
     int jend  = nx - 1;
-    int chunk_size = (nx - 2) / omp_get_max_threads();
+    int chunk_size = 10;
 
     // the interior grid points
     #pragma omp parallel shared(f, s, y_old, bndE, bndW, bndN, bndS) firstprivate(alpha, beta, nx, iend, jend)
