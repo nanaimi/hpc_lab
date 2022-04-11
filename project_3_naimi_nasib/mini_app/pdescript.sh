@@ -4,6 +4,6 @@
   for t in {1..24}
   do
     export OMP_NUM_THREADS=$t
-    bsub -n $t -W 00:10 -R "span[ptile=$t]" -R "select[model=XeonGold_6150]" ./main $SIZE 100 0.05
+    bsub -n $t -W 00:10 -R "span[ptile=$t]" -R "select[model=XeonGold_6150]" ./main $SIZE 300 0.05
   done
 # done
