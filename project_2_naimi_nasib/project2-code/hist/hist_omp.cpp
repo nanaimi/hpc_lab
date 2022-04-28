@@ -1,3 +1,4 @@
+#include <omp.h>
 #include "walltime.h"
 #include <iostream>
 #include <random>
@@ -49,7 +50,7 @@ int main() {
   for (int i = 0; i < BINS; ++i) {
     cout << "dist[" << i << "]=" << dist[i] << endl;
   }
-  cout << "Time: " << time_end - time_start << " sec" << endl;
+  cout << "Threads: " << omp_get_max_threads() << " Time: " << time_end - time_start << " sec" << endl;
 
   delete[] vec;
 

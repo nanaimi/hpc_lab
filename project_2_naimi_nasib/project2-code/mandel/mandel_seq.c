@@ -30,6 +30,7 @@ int main(int argc, char **argv) {
   double zabs;
 
   n = 0;
+  zabs = 0.0;
   // do the calculation
   for (j = 0; j < IMAGE_HEIGHT; j++) {
     cx = MIN_X;
@@ -44,12 +45,14 @@ int main(int argc, char **argv) {
       // TODO
       // >>>>>>>> CODE IS MISSING
       n = 0;
-      while ((x2 + y2 < 4) && (n < MAX_ITERS)) {
+      zabs = x2 + y2;
+      while ((zabs < 4) && (n < MAX_ITERS)) {
              y = 2 * x * y + cy;
              x = x2 - y2 + cx;
              x2 = x * x;
              y2 = y * y;
              n = n + 1;
+	     zabs = x2 + y2;
       }
       nTotalIterationsCount += n;
       // <<<<<<<< CODE IS MISSING
