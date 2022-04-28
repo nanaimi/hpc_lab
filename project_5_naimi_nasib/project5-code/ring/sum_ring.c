@@ -51,14 +51,17 @@ int main (int argc, char *argv[])
     for(i = 0; i < size; i++){
 
         // MPI_Isend(&snd_buf,1,MPI_INT,right,0,MPI_COMM_WORLD, &request);
-	if ((my_rank % 2) == 0) {
-            MPI_Send(&snd_buf,1,MPI_INT,right,0,MPI_COMM_WORLD);
-            MPI_Recv(&rcv_buf,1,MPI_INT,left,0,MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-	} else {
-	    MPI_Recv(&rcv_buf,1,MPI_INT,left,0,MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-	    MPI_Send(&snd_buf,1,MPI_INT,right,0,MPI_COMM_WORLD);
-	}
-        // MPI_Wait(&request, &status);
+        // if ((my_rank % 2) == 0) {
+        //         MPI_Send(&snd_buf,1,MPI_INT,right,0,MPI_COMM_WORLD);
+        //         MPI_Recv(&rcv_buf,1,MPI_INT,left,0,MPI_COMM_WORLD, &status);
+        // } else {
+        //     MPI_Recv(&rcv_buf,1,MPI_INT,left,0,MPI_COMM_WORLD, &status);
+        //     MPI_Send(&snd_buf,1,MPI_INT,right,0,MPI_COMM_WORLD);
+        // }
+
+        MPI_Isend(&snd_buf,1,MPI_INT,right,0,MPI_COMM_WORLD, &request);
+        MPI_Recv(&rcv_buf,1,MPI_INT,left,0,MPI_COMM_WORLD, &status);
+        MPI_Wait(&request, &status);
 
         sum += rcv_buf;
         snd_buf = rcv_buf;
