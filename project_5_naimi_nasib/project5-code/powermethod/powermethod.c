@@ -177,7 +177,7 @@ int main (int argc, char *argv[])
     srand((unsigned) time(NULL));
     int startrow = N / size * my_rank; // assumption that N is divisible by size
     int numrows =  (my_rank == size - 1) ? N / size + N % size : N / size;
-    int lambda;
+    double lambda;
     double* A;
     double* x;
     double* localx;
