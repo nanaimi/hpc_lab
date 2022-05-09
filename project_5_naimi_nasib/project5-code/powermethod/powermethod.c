@@ -15,12 +15,12 @@
  ****************************************************************/
 
 
+#include <stdlib.h>
 #include <stdio.h>
-#include "hpc-power.h"
 #include <mpi.h>
 #include <time.h>
 #include <math.h>
-#include <stdlib.h>
+#include "hpc-power.c"
 
 #define SEED 42
 #define MAX 10000
