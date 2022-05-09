@@ -174,9 +174,6 @@ int main (int argc, char *argv[])
        timings, and validate the answer.
     */
 
-    printf(my_rank);
-    printf(size);
-
     srand((unsigned) time(NULL));
     int startrow = N / size * my_rank; // assumption that N is divisible by size
     int numrows =  (my_rank == size - 1) ? N / size + N % size : N / size;
@@ -213,7 +210,6 @@ int main (int argc, char *argv[])
             if(x[i] < 0)
                 x[i]=-x[i];
         }
-        // printf("verify: %i\n",hpc_verify(x, N, 0));
         printf("version,processes, N, NIter, time, result\n");
         printf("gather,%2d, %4d, %4d, %6f, %10f\n", size, N, NUM_ITER, total_time,lambda);
     }
