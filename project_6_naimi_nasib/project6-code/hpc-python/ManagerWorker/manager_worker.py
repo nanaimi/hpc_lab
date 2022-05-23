@@ -67,7 +67,7 @@ def worker(comm):
             break
         task.do_work()
         counter += 1
-        comm.send(obj = task, dest = MANAGER, tag = TAG_TASK_DONE)
+        comm.send(obj=task, dest= MANAGER, tag=TAG_TASK_DONE)
     return counter
 
 def readcmdline(rank):
@@ -153,10 +153,6 @@ if __name__ == "__main__":
     # inform that done
     if my_rank == MANAGER:
         print(f"Run took {timespent:f} seconds")
-        # for i in range(size):
-        #     if i == MANAGER:
-        #         continue
-        #     print(f"Process {i:5d} has done {TasksDoneByWorker[i]:10d} tasks")
         print("Done.")
         print("### END TIME ###")
         print(f'''{size}, {timespent},''')
