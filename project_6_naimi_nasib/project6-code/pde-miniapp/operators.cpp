@@ -49,18 +49,45 @@ void diffusion(const data::Field &s, data::Field &f)
     // TODO exchange the ghost cells
     // try overlapping computation and communication
     // by using  MPI_Irecv and MPI_Isend.
+    MPI_Request request[8];
+    std::fill_n(request, 8, MPI_REQUEST_NULL);
+    MPI_Status status[8];
     if(domain.neighbour_north>=0) {
         // ...
+        for(int i = 0; i <= iend; i++){
+            buffN[i] = s(i,jend);
+        }
+        int size = buffN.length();
+        MPI_Irecv(&bndN[0], size, MPI_DOUBLE, domain.neighbour_north, domain.neighbour_north, domain.comm_cart, &request[0]);
+        MPI_Isend(&buffN[0], size, MPI_DOUBLE, domain.neighbour_north, domain.rank, domain.comm_cart, &request[1]);
     }
 
     if(domain.neighbour_south>=0) {
        // ...
+       for(int i = 0; i <= iend; i++){
+            buffS[i] = s(i,0);
+        }
+       int size = bndS.length();
+       MPI_Irecv(&bndS[0], size, MPI_DOUBLE, domain.neighbour_south, domain.neighbour_south, domain.comm_cart, &request[2]);
+       MPI_Isend(&buffS[0], size, MPI_DOUBLE, domain.neighbour_south, domain.rank, domain.comm_cart, &request[3]);
     }
     if(domain.neighbour_east>=0) {
       // ...
+      for(int j = 0; j <= jend; j++){
+            buffE[j] = s(iend,j);
+        }
+      int size = bndE.length();
+      MPI_Irecv(&bndE[0], size, MPI_DOUBLE, domain.neighbour_east, domain.neighbour_east, domain.comm_cart, &request[4]);
+      MPI_Isend(&buffE[0], size, MPI_DOUBLE, domain.neighbour_east, domain.rank, domain.comm_cart, &request[5]);
     }
     if(domain.neighbour_west>=0) {
       // ...
+      for(int j = 0; j <= jend; j++){
+            buffW[j] = s(0,j);
+        }
+      int size = bndW.length();
+      MPI_Irecv(&bndW[0], size, MPI_DOUBLE, domain.neighbour_west, domain.neighbour_west, domain.comm_cart, &request[6]);
+      MPI_Isend(&buffW[0], size, MPI_DOUBLE, domain.neighbour_west, domain.rank, domain.comm_cart, &request[7]);
     }
 
     // the interior grid points
@@ -76,6 +103,7 @@ void diffusion(const data::Field &s, data::Field &f)
 
     // TODO: wait on the receives from the outstanding MPI_Irecv using MPI_Waitall.
     // ...
+    MPI_Waitall(8, request, status);
 
     // the east boundary
     {

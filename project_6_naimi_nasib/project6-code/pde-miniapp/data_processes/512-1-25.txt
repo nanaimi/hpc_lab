@@ -1,0 +1,108 @@
+Sender: LSF System <lsfadmin@eu-a6-003-02>
+Subject: Job 219488380: <mpirun ./main 512 100 0.01> in cluster <euler> Done
+
+Job <mpirun ./main 512 100 0.01> was submitted from host <eu-login-22> by user <nnaimi> in cluster <euler> at Mon May 23 17:22:17 2022
+Job was executed on host(s) <25*eu-a6-003-02>, in queue <hpc.4h>, as user <nnaimi> in cluster <euler> at Mon May 23 18:52:22 2022
+</cluster/home/nnaimi> was used as the home directory.
+</cluster/home/nnaimi/hpc_lab/project_6_naimi_nasib/project6-code/pde-miniapp> was used as the working directory.
+Started at Mon May 23 18:52:22 2022
+Terminated at Mon May 23 18:52:25 2022
+Results reported at Mon May 23 18:52:25 2022
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+mpirun ./main 512 100 0.01
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   27.34 sec.
+    Max Memory :                                 386 MB
+    Average Memory :                             -
+    Total Requested Memory :                     25600.00 MB
+    Delta Memory :                               25214.00 MB
+    Max Swap :                                   -
+    Max Processes :                              2
+    Max Threads :                                2
+    Run time :                                   2 sec.
+    Turnaround time :                            5408 sec.
+
+The output (if any) follows:
+
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   eu-a6-003-02
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+[eu-a6-003-02][[62825,1],0][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],1][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],2][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],3][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],4][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],5][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],6][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],7][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],8][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],9][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],10][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],12][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],13][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],11][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],14][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],15][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],16][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],17][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],18][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],19][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],20][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],21][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],22][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],23][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-003-02][[62825,1],24][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+rank 0/25 : (1,1) neigh N:S 1:-2 neigh E:W -2:-2 local dims 512 x 20
+rank 1/25 : (1,2) neigh N:S 2:0 neigh E:W -2:-2 local dims 512 x 20
+rank 2/25 : (1,3) neigh N:S 3:1 neigh E:W -2:-2 local dims 512 x 20
+rank 3/25 : (1,4) neigh N:S 4:2 neigh E:W -2:-2 local dims 512 x 20
+rank 4/25 : (1,5) neigh N:S 5:3 neigh E:W -2:-2 local dims 512 x 20
+rank 5/25 : (1,6) neigh N:S 6:4 neigh E:W -2:-2 local dims 512 x 20
+rank 6/25 : (1,7) neigh N:S 7:5 neigh E:W -2:-2 local dims 512 x 20
+rank 7/25 : (1,8) neigh N:S 8:6 neigh E:W -2:-2 local dims 512 x 20
+rank 8/25 : (1,9) neigh N:S 9:7 neigh E:W -2:-2 local dims 512 x 20
+rank 9/25 : (1,10) neigh N:S 10:8 neigh E:W -2:-2 local dims 512 x 20
+rank 10/25 : (1,11) neigh N:S 11:9 neigh E:W -2:-2 local dims 512 x 20
+rank 11/25 : (1,12) neigh N:S 12:10 neigh E:W -2:-2 local dims 512 x 20
+rank 12/25 : (1,13) neigh N:S 13:11 neigh E:W -2:-2 local dims 512 x 20
+rank 13/25 : (1,14) neigh N:S 14:12 neigh E:W -2:-2 local dims 512 x 20
+rank 14/25 : (1,15) neigh N:S 15:13 neigh E:W -2:-2 local dims 512 x 20
+rank 15/25 : (1,16) neigh N:S 16:14 neigh E:W -2:-2 local dims 512 x 20
+rank 16/25 : (1,17) neigh N:S 17:15 neigh E:W -2:-2 local dims 512 x 20
+rank 17/25 : (1,18) neigh N:S 18:16 neigh E:W -2:-2 local dims 512 x 20
+rank 18/25 : (1,19) neigh N:S 19:17 neigh E:W -2:-2 local dims 512 x 20
+rank 19/25 : (1,20) neigh N:S 20:18 neigh E:W -2:-2 local dims 512 x 20
+rank 20/25 : (1,21) neigh N:S 21:19 neigh E:W -2:-2 local dims 512 x 20
+rank 21/25 : (1,22) neigh N:S 22:20 neigh E:W -2:-2 local dims 512 x 20
+rank 22/25 : (1,23) neigh N:S 23:21 neigh E:W -2:-2 local dims 512 x 20
+rank 23/25 : (1,24) neigh N:S 24:22 neigh E:W -2:-2 local dims 512 x 20
+rank 24/25 : (1,25) neigh N:S -2:23 neigh E:W -2:-2 local dims 512 x 32
+========================================================================
+                      Welcome to mini-stencil!
+version   :: MPI : 25 MPI ranks
+mesh      :: 512 * 512 dx = 0.00195695
+time      :: 100 time steps from 0 .. 0.01
+iteration :: CG 200, Newton 50, tolerance 1e-06
+========================================================================
+--------------------------------------------------------------------------------
+simulation took 0.881477 seconds
+7830 conjugate gradient iterations, at rate of 8882.82 iters/second
+301 newton iterations
+--------------------------------------------------------------------------------
+Goodbye!
+processes, gridsize, time, conjGradientIters, iters/sec, newtonIters
+25, 512,8.814770e-01,    7830,8.882819e+03,     301
+[eu-a6-003-02:48350] 24 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+[eu-a6-003-02:48350] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages

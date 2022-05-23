@@ -13,18 +13,18 @@ echo "--- Scaling ---"
 for gridsize in 128 256 512 1024
 do
     echo "-- $gridsize dim"
-    for nodes in 1
+    for nodes in {1..32}
     do
-        echo "-- $nodes node/s"
-        for p in {1..32}
+        # echo "-- $nodes node/s"
+        for p in 1
         do
             # ptile=$(($p / $nodes))
             # if (( $p % $nodes != 0 || $ptile > 24 )); then
             #     continue
             # fi
-            echo "- $p/$ptile"
+            echo "- $nodes"
             
-            bsub -n $p -R "span[ptile=$nodes]" -R "select[model==XeonGold_6150]" -W 01:00 \
+            bsub -n $nodes -R "span[ptile=$nodes]" -R "select[model==XeonGold_6150]" -W 01:00 \
             -oo data_processes/$gridsize-$p-$nodes.txt mpirun ./main $gridsize $steps $t
         done
     done

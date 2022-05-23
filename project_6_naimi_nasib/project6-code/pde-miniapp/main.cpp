@@ -12,6 +12,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <iomanip>
 
 #include <cstdio>
 #include <cmath>
@@ -139,6 +140,11 @@ int main(int argc, char* argv[])
     int mpi_rank, mpi_size, threadLevelProvided;
     // TODO initialize
     // use "MPI_Comm_size", "MPI_Comm_rank" and "MPI_Init_thread"
+    MPI_Request request;
+    MPI_Status status;
+    MPI_Init_thread(&argc, &argv, MPI_THREAD_MULTIPLE, &threadLevelProvided);
+    MPI_Comm_rank(MPI_COMM_WORLD, &mpi_rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &mpi_size);
 
     // initialize subdomain
     domain.init(mpi_rank, mpi_size, options);
@@ -297,10 +303,20 @@ int main(int argc, char* argv[])
                   << std::endl;
     }
 
-    if(domain.rank==0)
+    if(domain.rank==0) {
         std::cout << "Goodbye!" << std::endl;
+        std::cout << "processes, gridsize, time, conjGradientIters, iters/sec, newtonIters" << std::endl;
+        std::cout << domain.size << std::scientific
+            <<"," << std::setw(4) << options.nx
+            <<"," << std::setw(8) << timespent
+            <<"," << std::setw(8) << int(iters_cg)
+            <<"," << std::setw(8) << float(iters_cg)/timespent
+            <<"," << std::setw(8) << iters_newton << std::endl;
+    }
 
     // TODO finalize it using "MPI_Finalize" and "MPI_Comm_free"
+    MPI_Comm_free(&domain.comm_cart);
+    MPI_Finalize();
 
     return 0;
 }

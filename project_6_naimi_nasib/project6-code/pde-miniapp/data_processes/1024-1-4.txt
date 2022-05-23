@@ -1,0 +1,66 @@
+Sender: LSF System <lsfadmin@eu-a6-008-07>
+Subject: Job 219488394: <mpirun ./main 1024 100 0.01> in cluster <euler> Done
+
+Job <mpirun ./main 1024 100 0.01> was submitted from host <eu-login-22> by user <nnaimi> in cluster <euler> at Mon May 23 17:22:21 2022
+Job was executed on host(s) <4*eu-a6-008-07>, in queue <hpc.4h>, as user <nnaimi> in cluster <euler> at Mon May 23 17:52:38 2022
+</cluster/home/nnaimi> was used as the home directory.
+</cluster/home/nnaimi/hpc_lab/project_6_naimi_nasib/project6-code/pde-miniapp> was used as the working directory.
+Started at Mon May 23 17:52:38 2022
+Terminated at Mon May 23 17:54:06 2022
+Results reported at Mon May 23 17:54:06 2022
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+mpirun ./main 1024 100 0.01
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   328.83 sec.
+    Max Memory :                                 175 MB
+    Average Memory :                             131.80 MB
+    Total Requested Memory :                     4096.00 MB
+    Delta Memory :                               3921.00 MB
+    Max Swap :                                   -
+    Max Processes :                              7
+    Max Threads :                                20
+    Run time :                                   88 sec.
+    Turnaround time :                            1905 sec.
+
+The output (if any) follows:
+
+[eu-a6-008-07][[52458,1],1][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-008-07][[52458,1],2][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-008-07][[52458,1],0][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-008-07][[52458,1],3][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   eu-a6-008-07
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+rank 0/4 : (1,1) neigh N:S 2:-2 neigh E:W 1:-2 local dims 512 x 512
+rank 1/4 : (2,1) neigh N:S 3:-2 neigh E:W -2:0 local dims 512 x 512
+rank 2/4 : (1,2) neigh N:S -2:0 neigh E:W 3:-2 local dims 512 x 512
+rank 3/4 : (2,2) neigh N:S -2:1 neigh E:W -2:2 local dims 512 x 512
+========================================================================
+                      Welcome to mini-stencil!
+version   :: MPI : 4 MPI ranks
+mesh      :: 1024 * 1024 dx = 0.000977517
+time      :: 100 time steps from 0 .. 0.01
+iteration :: CG 200, Newton 50, tolerance 1e-06
+========================================================================
+[eu-a6-008-07:34951] 3 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+[eu-a6-008-07:34951] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+--------------------------------------------------------------------------------
+simulation took 82.0609 seconds
+16007 conjugate gradient iterations, at rate of 195.063 iters/second
+336 newton iterations
+--------------------------------------------------------------------------------
+Goodbye!
+processes, gridsize, time, conjGradientIters, iters/sec, newtonIters
+4,1024,8.206086e+01,   16007,1.950626e+02,     336

@@ -1,0 +1,58 @@
+Sender: LSF System <lsfadmin@eu-a6-007-24>
+Subject: Job 219520271: <mpirun python3 main.py 256 100 0.01> in cluster <euler> Done
+
+Job <mpirun python3 main.py 256 100 0.01> was submitted from host <eu-login-22> by user <nnaimi> in cluster <euler> at Mon May 23 22:42:28 2022
+Job was executed on host(s) <eu-a6-007-24>, in queue <hpc.4h>, as user <nnaimi> in cluster <euler> at Mon May 23 22:42:45 2022
+</cluster/home/nnaimi> was used as the home directory.
+</cluster/home/nnaimi/hpc_lab/project_6_naimi_nasib/project6-code/hpc-python/pde-miniapp-py> was used as the working directory.
+Started at Mon May 23 22:42:45 2022
+Terminated at Mon May 23 22:43:04 2022
+Results reported at Mon May 23 22:43:04 2022
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+mpirun python3 main.py 256 100 0.01
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   16.86 sec.
+    Max Memory :                                 121 MB
+    Average Memory :                             116.00 MB
+    Total Requested Memory :                     1024.00 MB
+    Delta Memory :                               903.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                11
+    Run time :                                   44 sec.
+    Turnaround time :                            36 sec.
+
+The output (if any) follows:
+
+[eu-a6-007-24][[6591,1],0][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   eu-a6-007-24
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+================================================================================
+                            Welcome to mini-stencil!                            
+version   :: MPI Python
+mesh      ::  256 x  256, dx = 0.003922, dy = 0.003922
+time      ::  100 time steps from 0 to 0.010000
+iteration :: CG 200, Newton 50, tolerance 1.000000e-06
+================================================================================
+1 processes decomposed into a 1 x 1 Cartesian topology
+eu-a6-007-24 rank   0 /   1 : (  0,  0) neigh N:S  -2 :  -2 neigh E:W  -2 :  -2 local size 256 x 256
+simulation took 16.150122 seconds
+4310 conjugate gradient iterations: at rate of 266.871054 iters/second
+300 newton iterations
+--------------------------------------------------------------------------------
+=== End of simulation. Goodbye! ===
+processes, gridsize, time, conjGradientIters, iters/sec, newtonIters
+1, 256, 16.150122, 4310, 266.871054, 300

@@ -1,0 +1,58 @@
+Sender: LSF System <lsfadmin@eu-a6-002-07>
+Subject: Job 219488276: <mpirun ./main 128 100 0.01> in cluster <euler> Done
+
+Job <mpirun ./main 128 100 0.01> was submitted from host <eu-login-22> by user <nnaimi> in cluster <euler> at Mon May 23 17:21:45 2022
+Job was executed on host(s) <eu-a6-002-07>, in queue <hpc.4h>, as user <nnaimi> in cluster <euler> at Mon May 23 17:34:20 2022
+</cluster/home/nnaimi> was used as the home directory.
+</cluster/home/nnaimi/hpc_lab/project_6_naimi_nasib/project6-code/pde-miniapp> was used as the working directory.
+Started at Mon May 23 17:34:20 2022
+Terminated at Mon May 23 17:34:23 2022
+Results reported at Mon May 23 17:34:23 2022
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+mpirun ./main 128 100 0.01
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   0.85 sec.
+    Max Memory :                                 59 MB
+    Average Memory :                             -
+    Total Requested Memory :                     1024.00 MB
+    Delta Memory :                               965.00 MB
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   27 sec.
+    Turnaround time :                            758 sec.
+
+The output (if any) follows:
+
+[eu-a6-002-07][[44582,1],0][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   eu-a6-002-07
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+rank 0/1 : (1,1) neigh N:S -2:-2 neigh E:W -2:-2 local dims 128 x 128
+========================================================================
+                      Welcome to mini-stencil!
+version   :: MPI : 1 MPI ranks
+mesh      :: 128 * 128 dx = 0.00787402
+time      :: 100 time steps from 0 .. 0.01
+iteration :: CG 200, Newton 50, tolerance 1e-06
+========================================================================
+--------------------------------------------------------------------------------
+simulation took 0.312372 seconds
+2227 conjugate gradient iterations, at rate of 7129.31 iters/second
+300 newton iterations
+--------------------------------------------------------------------------------
+Goodbye!
+processes, gridsize, time, conjGradientIters, iters/sec, newtonIters
+1, 128,3.123725e-01,    2227,7.129309e+03,     300

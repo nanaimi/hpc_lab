@@ -4,13 +4,13 @@ count=0
 write_next=0
 for filename in data_processes/*.txt; do
     if [ "$count" == "0" ]; then
-        echo "processes, gridsize, time, conjGradientIters, iters/sec, newtonIters\n" >> log.csv
+        echo "processes, gridsize, time, conjGradientIters, iters/sec, newtonIters\n" >> log_nodes.csv
         count=$((count+1))
     fi
     
     while read line; do
         if [ "$write_next" == "1" ] ; then
-            echo $line >> log.csv
+            echo $line >> log_nodes.csv
             let write_next=0
             break
         fi

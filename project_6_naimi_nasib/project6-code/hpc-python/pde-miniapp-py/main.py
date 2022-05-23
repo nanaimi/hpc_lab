@@ -234,4 +234,6 @@ if __name__ == "__main__":
 
     if domain.rank == 0:
         print("=== End of simulation. Goodbye! ===")
-
+        
+        print("processes, gridsize, time, conjGradientIters, iters/sec, newtonIters")
+        print( f'''{domain.size}, {options.nx}, {timespent:f}, {iters_cg:d}, {((iters_cg)/timespent):f}, {iters_newton:d}''')

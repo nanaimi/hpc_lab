@@ -9,12 +9,15 @@ from . import operators
 def hpc_dot(x, y):
     """Computes the inner product of x and y"""
     # ... implement ...
-    return 1.e-10
+    localDot = np.dot(x.inner.flatten(),y.inner.flatten())
+    globalDot = np.asarray(localDot)
+    x.domain.comm_cart.Allreduce(localDot, globalDot)
+    return globalDot
 
 def hpc_norm2(x):
     """Computes the 2-norm of x"""
     # ... implement ...
-    return 1.e-10
+    return np.sqrt(hpc_dot(x,x))
 
 class hpc_cg:
     """Conjugate gradient solver class: solve the linear system A x = b"""

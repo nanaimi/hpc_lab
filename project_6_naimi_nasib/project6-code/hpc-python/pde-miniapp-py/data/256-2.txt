@@ -1,0 +1,62 @@
+Sender: LSF System <lsfadmin@eu-a6-005-24>
+Subject: Job 219520273: <mpirun python3 main.py 256 100 0.01> in cluster <euler> Done
+
+Job <mpirun python3 main.py 256 100 0.01> was submitted from host <eu-login-22> by user <nnaimi> in cluster <euler> at Mon May 23 22:42:28 2022
+Job was executed on host(s) <2*eu-a6-005-24>, in queue <hpc.4h>, as user <nnaimi> in cluster <euler> at Mon May 23 22:42:49 2022
+</cluster/home/nnaimi> was used as the home directory.
+</cluster/home/nnaimi/hpc_lab/project_6_naimi_nasib/project6-code/hpc-python/pde-miniapp-py> was used as the working directory.
+Started at Mon May 23 22:42:49 2022
+Terminated at Mon May 23 22:42:56 2022
+Results reported at Mon May 23 22:42:56 2022
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+mpirun python3 main.py 256 100 0.01
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   10.36 sec.
+    Max Memory :                                 106 MB
+    Average Memory :                             69.67 MB
+    Total Requested Memory :                     2048.00 MB
+    Delta Memory :                               1942.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                14
+    Run time :                                   6 sec.
+    Turnaround time :                            28 sec.
+
+The output (if any) follows:
+
+[eu-a6-005-24][[54186,1],0][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+[eu-a6-005-24][[54186,1],1][btl_openib_component.c:1670:init_one_device] error obtaining device attributes for mlx5_0 errno says No space left on device
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   eu-a6-005-24
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+================================================================================
+                            Welcome to mini-stencil!                            
+version   :: MPI Python
+mesh      ::  256 x  256, dx = 0.003922, dy = 0.003922
+time      ::  100 time steps from 0 to 0.010000
+iteration :: CG 200, Newton 50, tolerance 1.000000e-06
+================================================================================
+2 processes decomposed into a 2 x 1 Cartesian topology
+eu-a6-005-24 rank   0 /   2 : (  0,  0) neigh N:S  -2 :  -2 neigh E:W   1 :  -2 local size 128 x 256
+eu-a6-005-24 rank   1 /   2 : (  1,  0) neigh N:S  -2 :  -2 neigh E:W  -2 :   0 local size 128 x 256
+[eu-a6-005-24:52235] 1 more process has sent help message help-mpi-btl-openib.txt / error in device init
+[eu-a6-005-24:52235] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+simulation took 4.691294 seconds
+4314 conjugate gradient iterations: at rate of 919.575709 iters/second
+300 newton iterations
+--------------------------------------------------------------------------------
+=== End of simulation. Goodbye! ===
+processes, gridsize, time, conjGradientIters, iters/sec, newtonIters
+2, 256, 4.691294, 4314, 919.575709, 300
